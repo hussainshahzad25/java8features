@@ -9,8 +9,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class AA {
+public class Max {
 
 	public static void main(String[] args) {
 
@@ -20,16 +21,14 @@ public class AA {
 		persons.add(new Student("Edf", 14));
 		persons.add(new Student("Edf", 44));
 
-		
-//		Filter and Count
+		// Filter and Count
 		long count = persons.stream().filter(p -> p.getAge() > 18).count();
 		System.out.println(count);
 
-//		Collect and Listing
+		// Collect and Listing
 		List<Student> collect = persons.stream().collect(Collectors.toList());
 		System.out.println("All : : " + collect);
-		
-		
+
 		Iterator<?> it = collect.iterator();
 		while (it.hasNext()) {
 			Object object = (Object) it.next();
@@ -51,10 +50,6 @@ public class AA {
 		HOSTING.put(2, "heroku.com");
 		HOSTING.put(3, "digitalocean.com");
 		HOSTING.put(4, "aws.amazon.com");
-		
-		
-		
-		
 
 		// Map -> Stream -> Filter -> Map
 		Map<Integer, String> collector = HOSTING.entrySet().stream()
@@ -70,6 +65,53 @@ public class AA {
 		numbers.forEach(System.out::println);
 
 		// //////////////////////////////////////
+
+		ArrayList<Student> collect3 = persons.stream()
+				.filter(p -> p.getAge() > 18)
+				.collect(Collectors.toCollection(ArrayList::new));
+		System.out.println(collect3);
+
+		Integer[] aaa = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+		
+		
+		List<Integer> asList = Arrays.asList(aaa);
+
+		System.out.println(asList.stream().max(Integer::compareTo).get());
+		System.out.println(asList.stream().mapToInt(o -> o).sum());
+
+		List<Integer> number = Arrays.asList(9, 10, 3, 4, 7, 3, 4);
+		List<Integer> distinct = number.stream().map(i -> i * i).distinct()
+				.collect(Collectors.toList());
+		System.out.printf(
+				"Original List : %s, Square Without duplicates : %s %n",
+				number, distinct);
+
+		List<Integer> listOfNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 12, 18);
+		Integer lcm = listOfNumbers.stream().filter(i -> i % 2 == 0)
+				.filter(i -> i % 3 == 0).findFirst().get();
+		System.out.println(lcm);
+		
+		for (Integer integer : listOfNumbers) {
+			System.out.println(integer);
+		}
+		System.out.println("_____________");
+		asList.forEach(System.out::println);
+		System.out.println("===========");
+		asList.forEach(o->System.out.println(o));
+		
+		
+		
+		String [] names = {"Shahzad","Ram","Shyam","Golu"};
+		
+		List<String> asList2 = Arrays.asList(names);
+		
+		Stream<String> filter = asList2.stream().filter(o->o.startsWith("S"));
+		System.out.println("Count :: " +filter.count()  );
+		
+		
+	
+		
 
 	}
 }
