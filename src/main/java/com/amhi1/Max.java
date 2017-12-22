@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -73,8 +74,6 @@ public class Max {
 
 		Integer[] aaa = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-		
-		
 		List<Integer> asList = Arrays.asList(aaa);
 
 		System.out.println(asList.stream().max(Integer::compareTo).get());
@@ -91,27 +90,27 @@ public class Max {
 		Integer lcm = listOfNumbers.stream().filter(i -> i % 2 == 0)
 				.filter(i -> i % 3 == 0).findFirst().get();
 		System.out.println(lcm);
-		
+
 		for (Integer integer : listOfNumbers) {
 			System.out.println(integer);
 		}
-		System.out.println("_____________");
+
+		// PRINTING LIST USING LAMDA EXPRESSION
+
 		asList.forEach(System.out::println);
-		System.out.println("===========");
-		asList.forEach(o->System.out.println(o));
-		
-		
-		
-		String [] names = {"Shahzad","Ram","Shyam","Golu"};
-		
+		asList.forEach(o -> System.out.println(o));
+
+		String[] names = { "Shahzad", "Ram", "Shyam", "Golu" };
+
 		List<String> asList2 = Arrays.asList(names);
-		
-		Stream<String> filter = asList2.stream().filter(o->o.startsWith("S"));
-		System.out.println("Count :: " +filter.count()  );
-		
-		
-	
-		
+
+		Stream<String> filter = asList2.stream().filter(o -> o.startsWith("S"));
+		System.out.println("Count :: " + filter.count());
+
+		StringTokenizer st = new StringTokenizer("my name is khan", " ");
+		while (st.hasMoreTokens()) {
+			System.out.println(st.nextToken());
+		}
 
 	}
 }
